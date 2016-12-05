@@ -56,6 +56,6 @@ try {
     include './view/' . $view . '.php';
 }
 include 'view/ende.php';
-?>
+
 
 

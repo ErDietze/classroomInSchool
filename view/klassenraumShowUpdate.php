@@ -10,7 +10,7 @@
                         <div id="textfelder">
                         <tr>
                             <td>Raumnummer</td>
-                            <td><input type="text" name="nummer" value="" size="6" required/></td>
+                            <td><input type='text' name='nummer' value='<?php echo $objects['klassenraum']->getNummer(); ?>' size='30' /></td>
                         </tr>
                         <tr>
                         <td>Schulklasse</td>

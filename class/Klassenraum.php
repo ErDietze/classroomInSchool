@@ -67,9 +67,9 @@ class Klassenraum {
         try {
             $db = DbConnect::getConnection();
 
-            $stmt = $db->prepare("UPDATE klassenraum SET nummer=?, schulklassen_id=?, tafel_id=? WHERE id=?");
+            $stmt = $db->prepare("UPDATE klassenraum SET nummer=?, schulklassen_id=?, tafelanzahl_id=? WHERE id=?");
             $stmt->bindValue(1, $k->getNummer(), PDO::PARAM_INT);
-            $stmt->bindValue(2, $k->getSchulklasse_id(), PDO::PARAM_INT);
+            $stmt->bindValue(2, $k->getSchulklassen_id(), PDO::PARAM_INT);
             $stmt->bindValue(3, $k->getTafel_id(), PDO::PARAM_INT);
             $stmt->bindValue(4, $k->getId(), PDO::PARAM_INT);
             $stmt->execute();

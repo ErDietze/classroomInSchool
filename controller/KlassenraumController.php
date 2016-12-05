@@ -86,12 +86,15 @@ class KlassenraumController {
                 $idFiltered = filter_input(INPUT_GET, 'id', FILTER_SANITIZE_NUMBER_INT);
                 $id = isset($idFiltered) ? $idFiltered : '';
 
+                Klassenraum::update();
                 // Aufbereiten der Anzeigevariablen
+                $this->objects['klassenraum'] = Klassenraum::getAll();
                 $this->objects['schulklassen'] = Schulklasse::getAll();
                 $this->objects['tafelanzahl'] = Tafelanzahl::getAll();
                 $this->objects['view'] = 'klassenraumShowUpdate';
                 $this->objects['navigation'] = 6;
                 break;
+            
             case 'show':
                 // Aufbereiten der Anzeigevariablen
                 $this->objects['klassenraum'] = Klassenraum::getAll();
