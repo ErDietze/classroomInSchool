@@ -50,28 +50,28 @@ class Klassenraum {
         }
     }
 
-    public static function insert(Klassenraum $s) {
+    public static function insert(Klassenraum $k) {
         try {
             $db = DbConnect::getConnection();
             $stmt = $db->prepare("INSERT INTO klassenraum VALUES (Null, ?, ?, ?)");
-            $stmt->bindValue(1, $s->getNummer(), PDO::PARAM_INT);
-            $stmt->bindValue(2, $s->getSchulklassen_id(), PDO::PARAM_INT);
-            $stmt->bindValue(3, $s->getTafel_id(), PDO::PARAM_INT);
+            $stmt->bindValue(1, $k->getNummer(), PDO::PARAM_INT);
+            $stmt->bindValue(2, $k->getSchulklassen_id(), PDO::PARAM_INT);
+            $stmt->bindValue(3, $k->getTafel_id(), PDO::PARAM_INT);
             $stmt->execute();
-            $s->id = $db->lastInsertId();
-        } catch (Exception $e) {
+                    } catch (Exception $e) {
             throw new Exception('Konnte Klassenraum nicht speichern<br>' . $e->getMessage());
         }
     }
 
-    public static function update(Klassenraum $s) {
+    public static function update(Klassenraum $k) {
         try {
             $db = DbConnect::getConnection();
 
-            $stmt = $db->prepare("UPDATE klassenraum SET nummer=?, schulklasse_id=?, tafel_id WHERE id=?");
-            $stmt->bindValue(1, $s->getNummer(), PDO::PARAM_INT);
-            $stmt->bindValue(2, $s->getSchulklasse_id(), PDO::PARAM_INT);
-            $stmt->bindValue(3, $s->getTafel_id(), PDO::PARAM_INT);
+            $stmt = $db->prepare("UPDATE klassenraum SET nummer=?, schulklassen_id=?, tafel_id=? WHERE id=?");
+            $stmt->bindValue(1, $k->getNummer(), PDO::PARAM_INT);
+            $stmt->bindValue(2, $k->getSchulklasse_id(), PDO::PARAM_INT);
+            $stmt->bindValue(3, $k->getTafel_id(), PDO::PARAM_INT);
+            $stmt->bindValue(4, $k->getId(), PDO::PARAM_INT);
             $stmt->execute();
         } catch (Exception $e) {
             throw new Exception('Konnte Rauminfo nicht in db ändern<br>' . $e->getMessage());
@@ -91,5 +91,7 @@ class Klassenraum {
             throw new Exception('Konnte Raum nicht löschen<br>' . $e->getMessage());
         }
     }
+    
+    
 
 }

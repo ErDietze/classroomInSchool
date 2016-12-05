@@ -37,9 +37,7 @@ class KlassenraumController {
                 Klassenraum::insert(new Klassenraum($nummer, $schulklasse_id, $tafel_id));
                 
                 // Aufbereiten der Anzeigevariablen
-                $this->objects['klassenraum'] = Klassenraum::getAll();
-                $this->objects['schulklassen'] = Schulklasse::getAll();
-                
+                $this->objects['klassenraum'] = Klassenraum::getAll();                          
                 $this->objects['view'] = 'klassenraumShow';
                 $this->objects['navigation'] = 6;
                 break;
@@ -63,9 +61,13 @@ class KlassenraumController {
                 $id = isset($idFiltered) ? $idFiltered : '';
                 $nummerFiltered = filter_input(INPUT_POST, 'nummer', FILTER_SANITIZE_MAGIC_QUOTES);
                 $nummer = isset($nummerFiltered) ? $nummerFiltered : '';
+                $schulklassenIdFiltered = filter_input(INPUT_POST, 'schulklassen_id', FILTER_SANITIZE_NUMBER_INT);
+                $schulklassen_id = isset($schulklassenIdFiltered) ? $schulklassenIdFiltered : '';
+                $tafelIdFiltered = filter_input(INPUT_POST, 'tafel_id', FILTER_SANITIZE_NUMBER_INT);
+                $tafel_id = isset($tafelIdFiltered) ? $tafelIdFiltered : '';
 
                 // eigentliche action
-                Schulklasse::update(new Klassenraum($nummer, $id));
+                Klassenraum::update(new Klassenraum($nummer, $schulklassen_id, $tafel_id, $id));
 
                 // Aufbereiten der Anzeigevariablen
                 $this->objects['klassenraum'] = Klassenraum::getAll();
@@ -85,7 +87,8 @@ class KlassenraumController {
                 $id = isset($idFiltered) ? $idFiltered : '';
 
                 // Aufbereiten der Anzeigevariablen
-                $this->objects['klassenraum'] = Klassenraum::getById($id);
+                $this->objects['schulklassen'] = Schulklasse::getAll();
+                $this->objects['tafelanzahl'] = Tafelanzahl::getAll();
                 $this->objects['view'] = 'klassenraumShowUpdate';
                 $this->objects['navigation'] = 6;
                 break;

@@ -1,8 +1,7 @@
 <section id='content'>
     <article>
         <header>
-            <h1>Klassen ändern</h1>
-            
+            <h1>Klassen ändern</h1>            
             <form action='index.php' method='POST'>
                 <input type='hidden' name='area' value='schulklasse' />
                 <input type='hidden' name='action' value='update' />
