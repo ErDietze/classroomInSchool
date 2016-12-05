@@ -20,26 +20,16 @@
                             </select>
                         </td>
                     </tr>
+
+                    <tr>
+                        <td>Tafelanzahl</td>
+                        <td>
+                            <select name="tafel_id" required>
+                                <?php echo TafelanzahlHTML::buildDropdown($objects['tafelanzahl']); ?>
+                            </select>
+                        </td>
+                    </tr>
                     
-                        <tr>
-                            <td>Tafelanzahl
-                                <?php
-                                $db = DbConnect::getConnection();
-                                $stmttz = $db->prepare("SELECT * FROM tafelanzahl");
-                                $stmttz->execute();
-                                ?> 
-                                <select name="tafelanzahl">
-                                    <?php
-                                    $rowstz = $stmttz->fetchAll(PDO::FETCH_ASSOC);
-                                    $nametz = [];
-                                    foreach ($rowstz as $row) {
-                                        $nametz[$row['id']] = $row['name'];
-                                        echo '<option value="' . $row['id'] . '"> ' . $row['name'] . ' </option>';
-                                    }
-                                    ?> 
-                                </select>
-                            </td>
-                        </tr>
                     </div>
                     <tr>
                         <td></td>

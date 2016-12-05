@@ -61,8 +61,8 @@ class KlassenraumController {
                 // Variablenempfang
                 $idFiltered = filter_input(INPUT_POST, 'id', FILTER_SANITIZE_NUMBER_INT);
                 $id = isset($idFiltered) ? $idFiltered : '';
-                $nameFiltered = filter_input(INPUT_POST, 'nummer', FILTER_SANITIZE_MAGIC_QUOTES);
-                $name = isset($nameFiltered) ? $nameFiltered : '';
+                $nummerFiltered = filter_input(INPUT_POST, 'nummer', FILTER_SANITIZE_MAGIC_QUOTES);
+                $nummer = isset($nummerFiltered) ? $nummerFiltered : '';
 
                 // eigentliche action
                 Schulklasse::update(new Klassenraum($nummer, $id));
@@ -75,6 +75,7 @@ class KlassenraumController {
             case 'showInsert':
                 // Aufbereiten der Anzeigevariablen
                 $this->objects['schulklassen'] = Schulklasse::getAll();
+                $this->objects['tafelanzahl'] = Tafelanzahl::getAll();
                 $this->objects['view'] = 'klassenraumShowInsert';
                 $this->objects['navigation'] = 5;
                 break;

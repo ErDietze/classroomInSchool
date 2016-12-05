@@ -17,26 +17,3 @@ class KlassenraumHTML {
         $html .= "</tbody>";
 return $html;}}
     
-
-//    public static function buildDropdown($schulklassen, $schuelerAlt = NULL) {
-//        if (is_null($schuelerAlt)) {
-//            $html = "<option value='0'></option>";
-//            foreach ($schulklassen as $pk => $sk) {
-//                $html .= "<option value='$pk' >{$sk->getName()}</option>";
-//            }
-//        } else {
-//            // preselected mit ausgeben
-//            $html = '';
-//            $sk_id = $schuelerAlt->getSchulklasse_id();
-//            
-//            foreach ($schulklassen as $pk => $sk) {
-//                if ($sk_id === $pk) {
-//                    // bisherige Schulklasse des Schülers
-//                    $html .= "<option value='$pk' selected>{$sk->getName()}</option>";
-//                } else {
-//                    $html .= "<option value='$pk' >{$sk->getName()}</option>";
-//                }
-//            }
-//        }
-//        return $html;
-    
