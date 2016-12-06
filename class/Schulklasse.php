@@ -176,10 +176,17 @@ class Schulklasse {
     public static function getSchuelerById($id) {
         try {
             $objects = self::getAll();
+//            echo '<pre>';
+//            print_r($objects);
+//            echo '</pre>';
             foreach ($objects as $sk) {
                 foreach ($sk->getSchueler() as $schueler) {
+                    echo '<pre>';
+                    print_r($schueler);
+                    echo '</pre>';
+                    echo $schueler->getId() .  '<=>' . $id . '<br>';
                     if ($schueler->getId() == $id) {
-                        $schuelerAlt = $schueler;
+                        $schuelerAlt = $schueler; echo 188;
                     }
                 }
             }

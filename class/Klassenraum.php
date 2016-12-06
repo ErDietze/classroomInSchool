@@ -50,6 +50,23 @@ class Klassenraum {
         }
     }
 
+    public static function getById($suchstring) {
+        try {
+            $db = DbConnect::getConnection();
+            // $suchstring etnhält den zu suchenden Teilstring
+            // sql statment mit prepare statements
+            $stmt = $db->prepare("SELECT * FROM klassenraum WHERE id = ?");
+            $stmt->bindValue(1, $suchstring, PDO::PARAM_INT);
+            $stmt->execute();
+            $row = $stmt->fetch(PDO::FETCH_ASSOC);
+            $klassenraum = new Klassenraum($row['nummer'], $row['tafelanzahl_id'], $row['id']);
+
+            return $klassenraum;
+        } catch (Exception $e) {
+            throw new Exception('Konnte Raum nicht ausgeben<br>' . $e->getMessage());
+        }
+    }
+    
     public static function insert(Klassenraum $k) {
         try {
             $db = DbConnect::getConnection();

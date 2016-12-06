@@ -53,7 +53,7 @@ class SchuelerController {
                 
                 // Aufbereiten der Anzeigevariablen
                 $this->objects['schulklassen'] = Schulklasse::getAll();
-                $this->objects['view'] = 'schuelerAnzeigen';
+                $this->objects['view'] = 'schuelerShow';
                 $this->objects['navigation'] = 1;
                 break;
                 
@@ -90,7 +90,7 @@ class SchuelerController {
                 break;
             case 'showUpdate':
                 // Variablenempfang
-                $idFiltered = filter_input(INPUT_POST, 'id', FILTER_SANITIZE_NUMBER_INT);
+                $idFiltered = filter_input(INPUT_GET, 'id', FILTER_SANITIZE_NUMBER_INT);
                 $id = isset($idFiltered) ? $idFiltered : '';
                 
                 // Aufbereiten der Anzeigevariablen
