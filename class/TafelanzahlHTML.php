@@ -29,5 +29,32 @@ class TafelanzahlHTML {
             echo'<option value="' . $row['id'] . '"> ' . $row['name'] . ' </option>';
         }
     }
+    
+    public static function buildDropdown2($klassenraum, $tafel_idAlt = NULL) {
+            
+        $html = '';
+        if (is_null($tafel_idAlt)) {
+            $html .= "<option value='0'></option>";
+            foreach ($klassenraum as $pk => $sk) {
+                $html .= "<option value='$pk' >{$sk->getName()}</option>";
+            }
+        } else {
+            
+            $sk_id = $tafel_idAlt;
+
+            foreach ($klassenraum as $pk => $sk) {
+                if ($sk_id === $pk) {
+                    // bisherige Schulklasse des Schülers
+                    $html .= "<option value='$pk' selected>{$sk->getName()}</option>";
+                } else {
+                    $html .= "<option value='$pk' >{$sk->getName()}</option>";
+                }
+            }
+        } 
+       
+       
+        return $html;
+    }
+
 
 }

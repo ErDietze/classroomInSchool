@@ -7,37 +7,52 @@
                 <input type='hidden' name='action' value='update' />
                 <table border='0' cellpadding='5' cellspacing='10' >
                     <tbody>
-                        <div id="textfelder">
+                        <?php
+//                        echo '<pre>';
+//                        print_r($objects);
+//                        echo '</pre>';
+//                        
+                        ?>
+                    <div id="textfelder">
                         <tr>
                             <td>Raumnummer</td>
                             <td><input type='text' name='nummer' value='<?php echo $objects['klassenraum']->getNummer(); ?>' size='30' /></td>
                         </tr>
                         <tr>
-                        <td>Schulklasse</td>
-                        <td>
-                            <select name="schulklasse_id" required>
-                                <?php echo SchulklasseHTML::buildDropdown($objects['schulklassen']); ?>
-                            </select>
-                        </td>
-                    </tr>
+                            <td>Schulklasse</td>
+                            <td>
 
-                    <tr>
-                        <td>Tafelanzahl</td>
-                        <td>
-                            <select name="tafel_id" required>
-                                <?php echo TafelanzahlHTML::buildDropdown($objects['tafelanzahl']); ?>
-                            </select>
-                        </td>
-                    </tr>
-                    
+                                <select name="schulklassen_id" required>
+                                    <?php echo KlassenraumHTML::buildDropdown($objects['schulklassen']
+                                            , $objects['klassenraum']->getSchulklassen_id());
+                                    ?>
+                                </select>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>Tafelanzahl</td>
+                            <td>
+                               
+                                <select name="tafel_id" required>
+<?php echo TafelanzahlHTML::buildDropdown2($objects['tafelanzahl'], $objects['klassenraum']->getTafel_id()); ?>
+                                     <?php
+                                echo '<pre>';
+                                print_r($objects);
+                                echo '</pre>';
+                                ?>
+                                </select>
+                            </td>
+                        </tr>
+
                     </div>
                     <tr>
                         <td></td>
-                            <td>
-                                <input type='submit' value='Speichern' />
-                               
-                            </td>
-                        </tr>
+                        <td>
+                            <input type='submit' value='Speichern' />
+                            <input type='reset' value='reset' />
+                        </td>
+                    </tr>
                     </tbody>
                 </table>
             </form>

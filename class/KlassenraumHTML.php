@@ -15,5 +15,33 @@ class KlassenraumHTML {
             </tr>";
         }
         $html .= "</tbody>";
-return $html;}}
-    
+        return $html;
+    }
+
+    public static function buildDropdown($klassenraum, $schulklassen_idAlt = NULL) {
+            
+        $html = '';
+        if (is_null($schulklassen_idAlt)) {
+            $html .= "<option value='0'></option>";
+            foreach ($klassenraum as $pk => $sk) {
+                $html .= "<option value='$pk' >{$sk->getName()}</option>";
+            }
+        } else {
+            
+            $sk_id = $schulklassen_idAlt;
+
+            foreach ($klassenraum as $pk => $sk) {
+                if ($sk_id === $pk) {
+                    // bisherige Schulklasse des Schülers
+                    $html .= "<option value='$pk' selected>{$sk->getName()}</option>";
+                } else {
+                    $html .= "<option value='$pk' >{$sk->getName()}</option>";
+                }
+            }
+        } 
+       
+       
+        return $html;
+    }
+
+}
