@@ -59,11 +59,11 @@ class Klassenraum {
             $stmt->bindValue(1, $suchstring, PDO::PARAM_INT);
             $stmt->execute();
             $row = $stmt->fetch(PDO::FETCH_ASSOC);
-            $klassenraum = new Klassenraum($row['nummer'], $row['tafelanzahl_id'], $row['id']);
+            $schulklasse = new Klassenraum($row['nummer'], $row['schulklassen_id'], $row['tafelanzahl_id'], $row['id']);
 
-            return $klassenraum;
+            return $schulklasse;
         } catch (Exception $e) {
-            throw new Exception('Konnte Raum nicht ausgeben<br>' . $e->getMessage());
+            throw new Exception('Konnte Schulklassen nicht ausgeben<br>' . $e->getMessage());
         }
     }
     
