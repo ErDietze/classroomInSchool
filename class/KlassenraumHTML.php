@@ -33,15 +33,14 @@ class KlassenraumHTML {
 
             foreach ($klassenraum as $pk => $sk) {
                 if ($sk_id === $pk) {
-                    // bisherige Schulklasse des Schülers
+                    // bisherige Schulklasse im Klassenraum
                     $html .= "<option value='$pk' selected>{$sk->getName()}</option>";
                 } else {
                     $html .= "<option value='$pk' >{$sk->getName()}</option>";
                 }
             }
-        }
-
-
+        } 
+        
         return $html;
     }
 

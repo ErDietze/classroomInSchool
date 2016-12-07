@@ -6,7 +6,7 @@ class Klassenraum {
     private $nummer;
     private $schulklassen_id;
     private $tafel_id;
-    private $tafeln = [];
+    
 
     function getId() {
         return $this->id;
@@ -37,6 +37,7 @@ class Klassenraum {
     public static function getAll() {
         try {
             $db = DbConnect::getConnection();
+            //sql statement zur Ausgabe des kompletten Inhaltes von klassenraum
             //sql statemant mit prepare statements
             $stmt = $db->prepare("SELECT * FROM klassenraum");
             $stmt->execute();
@@ -51,12 +52,11 @@ class Klassenraum {
         }
     }
 
-    private static function getKlassenraumById($nummer = NULL, $schulklasse_id = NULL, $tafel_id = NULL) {
+    private static function getKlassenraumById() {
 
+        // suche des Klassenraumes anhand seiner Id für ShowUpdate
         $db = DbConnect::getConnection();
-        // gefilterte Suche
-        // Lesezugriff auf table schulklasse UND schueler
-        // fastload über 2 Tabellen, dient dem speed(nicht zwingend nötig)
+               
 //        $sql = "Select klassenraum.id as id , klassenraum.nummer, schulklasse.name as klassenname, tafelanzahl.name as tafelname from klassenraum "
 //                . "join schulklasse on schulklassen_id = schulklasse.id "
 //                . "join tafelanzahl on tafelanzahl_id = tafelanzahl.id";
@@ -76,10 +76,12 @@ class Klassenraum {
     }
 
     public function getSchulklasseName() {
+        // Ausgabe des Klassennamen (schulklasse.name)
         return Schulklasse::getById($this->schulklassen_id)->getName();
     }
 
     public function getTafelName() {
+        // Ausgabe der Tafelanzahl (tafelanzahl.name)
         return Tafelanzahl::getById($this->tafel_id)->getName();
     }
 
@@ -146,9 +148,7 @@ class Klassenraum {
     public static function getTafelnById($id) {
         try {
             $objects = self::getAll();
-//            echo '<pre>';
-//            print_r($objects);
-//            echo '</pre>';
+
             foreach ($objects as $sk) {
                 foreach ($sk->getTafeln() as $tafeln) {
 

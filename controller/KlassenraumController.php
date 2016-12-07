@@ -33,10 +33,10 @@ class KlassenraumController {
                 $tafelIdFiltered = filter_input(INPUT_POST, 'tafel_id', FILTER_SANITIZE_NUMBER_INT);
                 $tafel_id = isset($tafelIdFiltered) ? $tafelIdFiltered : '';
                 
-                // eigentliche action
+                // eigentliche action (hinzufügen des Klassenraumes)
                 Klassenraum::insert(new Klassenraum($nummer, $schulklasse_id, $tafel_id));
                 
-                // Aufbereiten der Anzeigevariablen
+                // Aufbereiten der Anzeigevariablen 
                 $this->objects['klassenraum'] = Klassenraum::getAll();                          
                 $this->objects['view'] = 'klassenraumShow';
                 $this->objects['navigation'] = 6;
@@ -47,7 +47,7 @@ class KlassenraumController {
                 $idsFiltered = array_filter($_POST['ids'], 'ctype_digit');
                 $ids = isset($idsFiltered) ? $idsFiltered : '';
 
-                // eigentliche action
+                // eigentliche action (entfernen des Klassenraumes)
                 Klassenraum::delete($ids);
 
                 // Aufbereiten der Anzeigevariablen
@@ -66,7 +66,7 @@ class KlassenraumController {
                 $tafelIdFiltered = filter_input(INPUT_POST, 'tafel_id', FILTER_SANITIZE_NUMBER_INT);
                 $tafel_id = isset($tafelIdFiltered) ? $tafelIdFiltered : '';
 
-                // eigentliche action
+                // eigentliche action (Update Tabelle klassenraum)
                 Klassenraum::update(new Klassenraum($nummer, $schulklassen_id, $tafel_id,$id));
 
                 // Aufbereiten der Anzeigevariablen

@@ -14,7 +14,7 @@ try {
         }
     });
 
-//erwartet schueler oder schulklasse, mit REQUEST wird GET und POST aufgefangen
+//erwartet schueler, schulklasse, tafelanzahl oder klassenraum mit REQUEST wird GET und POST aufgefangen
     if (isset($_POST['area'])) {
         $areaFiltered = filter_input(INPUT_POST, 'area', FILTER_SANITIZE_MAGIC_QUOTES);
     } else {
@@ -37,11 +37,11 @@ try {
         // SchulklassenController einbinden
         $controller = new SchulklasseController($action);
     } elseif ($area === 'klassenraum') {
-        // SchulklassenController einbinden
+        // KlassenraumController einbinden
         $controller = new KlassenraumController($action);
     } else {
         $view = 'fehler';
-        throw new Exception("unbeknnte area gewählt");
+        throw new Exception("unbekannte area gewählt");
     }
     if (isset($controller)) {
         $objects = $controller->doAction();

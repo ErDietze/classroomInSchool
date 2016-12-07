@@ -7,12 +7,7 @@
                 <input type='hidden' name='action' value='update' />
                 <table border='0' cellpadding='5' cellspacing='10' >
                     <tbody>
-                        <?php
-//                        echo '<pre>';
-//                        print_r($objects);
-//                        echo '</pre>';
-//                        
-                        ?>
+
                     <div id="textfelder">
                         <tr>
                             <td>Raumnummer</td>
@@ -23,21 +18,22 @@
                             <td>
 
                                 <select name="schulklassen_id" required>
-                                    <?php echo KlassenraumHTML::buildDropdown($objects['schulklassen']
+                                    <?php
+                                    echo KlassenraumHTML::buildDropdown($objects['schulklassen']
                                             , $objects['klassenraum']->getSchulklassen_id());
-                                                                       ?>
+                                    ?>
                                 </select>
                             </td>
-                            
+
                         </tr>
 
                         <tr>
                             <td>Tafelanzahl</td>
                             <td>
-                               
+
                                 <select name="tafel_id" required>
 <?php echo TafelanzahlHTML::buildDropdown2($objects['tafelanzahl'], $objects['klassenraum']->getTafel_id()); ?>
-                                                                     
+
                                 </select>
                             </td>
                         </tr>
@@ -49,7 +45,7 @@
                             <input type='submit' value='Speichern' />
                             <input type='reset' value='reset' />
                         </td>
-                        <input type='hidden' name='id' value='<?php echo $objects['klassenraum']->getId(); ?>'/>
+                    <input type='hidden' name='id' value='<?php echo $objects['klassenraum']->getId(); ?>'/>
                     </tr>
                     </tbody>
                 </table>
