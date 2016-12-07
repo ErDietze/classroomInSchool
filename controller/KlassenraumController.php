@@ -97,7 +97,8 @@ class KlassenraumController {
             case 'show':
                 // Aufbereiten der Anzeigevariablen
                 $this->objects['klassenraum'] = Klassenraum::getAll();      
-                $this->objects['schulklasse'] = Schulklasse::getAll();
+                $this->objects['schulklassen'] = Schulklasse::getAll();
+                $this->objects['tafelanzahl'] = Tafelanzahl::getAll();
                 $this->objects['view'] = 'klassenraumShow';
                 $this->objects['navigation'] = 6;
                 break;

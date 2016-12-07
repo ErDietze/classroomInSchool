@@ -5,7 +5,7 @@ class Schulklasse {
     private $id;
     private $name;
     private $schueler = [];
-
+    
     public function __construct($name, $id = NULL) {
         if (!is_null($id)) {
             $this->id = $id;

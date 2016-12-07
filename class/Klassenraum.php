@@ -6,6 +6,7 @@ class Klassenraum {
     private $nummer;
     private $schulklassen_id;
     private $tafel_id;
+    private $tafeln = [];
 
     function getId() {
         return $this->id;
@@ -21,6 +22,10 @@ class Klassenraum {
 
     function getTafel_id() {
         return $this->tafel_id;
+    }
+
+    function getTafeln() {
+        return $this->tafeln;
     }
 
     function __construct($nummer, $schulklassen_id, $tafel_id, $id = NULL) {
@@ -50,6 +55,38 @@ class Klassenraum {
         }
     }
 
+    private static function getKlassenraumById($nummer = NULL, $schulklasse_id = NULL, $tafel_id = NULL) {
+
+        $db = DbConnect::getConnection();
+        // gefilterte Suche
+        // Lesezugriff auf table schulklasse UND schueler
+        // fastload über 2 Tabellen, dient dem speed(nicht zwingend nötig)
+//        $sql = "Select klassenraum.id as id , klassenraum.nummer, schulklasse.name as klassenname, tafelanzahl.name as tafelname from klassenraum "
+//                . "join schulklasse on schulklassen_id = schulklasse.id "
+//                . "join tafelanzahl on tafelanzahl_id = tafelanzahl.id";
+
+        $sql = "Select * from klassenraum";
+        $stmt = $db->prepare($sql);
+
+        $stmt->execute();
+        $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        $klassenraeume = [];
+        foreach ($rows as $row) {
+            $k = new Klassenraum($row['nummer'], $row['schulklassen_id'], $row['tafel_id'], $row['id']);
+            $klassenraeume = $k;
+        }
+
+        return $klassenraeume;
+    }
+
+    public function getSchulklasseName() {
+        return Schulklasse::getById($this->schulklassen_id)->getName();
+    }
+
+    public function getTafelName() {
+        return Tafelanzahl::getById($this->tafel_id)->getName();
+    }
+
     public static function getById($suchstring) {
         try {
             $db = DbConnect::getConnection();
@@ -66,7 +103,7 @@ class Klassenraum {
             throw new Exception('Konnte Schulklassen nicht ausgeben<br>' . $e->getMessage());
         }
     }
-    
+
     public static function insert(Klassenraum $k) {
         try {
             $db = DbConnect::getConnection();
@@ -75,7 +112,7 @@ class Klassenraum {
             $stmt->bindValue(2, $k->getSchulklassen_id(), PDO::PARAM_INT);
             $stmt->bindValue(3, $k->getTafel_id(), PDO::PARAM_INT);
             $stmt->execute();
-                    } catch (Exception $e) {
+        } catch (Exception $e) {
             throw new Exception('Konnte Klassenraum nicht speichern<br>' . $e->getMessage());
         }
     }
@@ -108,7 +145,25 @@ class Klassenraum {
             throw new Exception('Konnte Raum nicht löschen<br>' . $e->getMessage());
         }
     }
-    
-    
+
+    public static function getTafelnById($id) {
+        try {
+            $objects = self::getAll();
+//            echo '<pre>';
+//            print_r($objects);
+//            echo '</pre>';
+            foreach ($objects as $sk) {
+                foreach ($sk->getTafeln() as $tafeln) {
+
+                    if ($tafeln->getId() == $id) {
+                        $tafelnAlt = $tafeln;
+                    }
+                }
+            }
+            return $tafelnAlt;
+        } catch (Exception $e) {
+            throw new Exception('Konnte Tafeln in Klassenraum nicht finden<br>' . $e->getMessage());
+        }
+    }
 
 }

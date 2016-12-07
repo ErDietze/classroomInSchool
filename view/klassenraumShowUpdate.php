@@ -25,6 +25,9 @@
                                 <select name="schulklassen_id" required>
                                     <?php echo KlassenraumHTML::buildDropdown($objects['schulklassen']
                                             , $objects['klassenraum']->getSchulklassen_id());
+                                    echo '<pre>';
+                                    print_r($objects);
+                                    echo '</pre>';
                                     ?>
                                 </select>
                             </td>

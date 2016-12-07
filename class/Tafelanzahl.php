@@ -19,7 +19,8 @@ class Tafelanzahl {
     function getName() {
         return $this->name;
     }
-   public static function getAll() {
+
+    public static function getAll() {
         try {
             $db = DbConnect::getConnection();
             //sql statemant mit prepare statements
@@ -34,4 +35,23 @@ class Tafelanzahl {
         } catch (Exception $e) {
             throw new Exception('Konnte Tafelanzahl nicht finden.<br>' . $e->getMessage());
         }
-}}
+    }
+
+    public static function getById($suchstring) {
+        try {
+            $db = DbConnect::getConnection();
+            // $suchstring etnhält den zu suchenden Teilstring
+            // sql statment mit prepare statements
+            $stmt = $db->prepare("SELECT * FROM tafelanzahl WHERE id = ?");
+            $stmt->bindValue(1, $suchstring, PDO::PARAM_INT);
+            $stmt->execute();
+            $row = $stmt->fetch(PDO::FETCH_ASSOC);
+            $tafelanzahl = new Tafelanzahl($row['name'], $row['id']);
+
+            return $tafelanzahl;
+        } catch (Exception $e) {
+            throw new Exception('Konnte Tafelanzahl nicht ausgeben<br>' . $e->getMessage());
+        }
+    }
+
+}

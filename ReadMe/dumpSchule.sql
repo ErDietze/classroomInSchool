@@ -16,6 +16,32 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
+-- Table structure for table `klassenraum`
+--
+
+DROP TABLE IF EXISTS `klassenraum`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `klassenraum` (
+  `id` int(10) NOT NULL AUTO_INCREMENT,
+  `nummer` varchar(10) NOT NULL,
+  `schulklassen_id` int(11) DEFAULT NULL,
+  `tafelanzahl_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `klassenraum`
+--
+
+LOCK TABLES `klassenraum` WRITE;
+/*!40000 ALTER TABLE `klassenraum` DISABLE KEYS */;
+INSERT INTO `klassenraum` VALUES (2,'001',1,2),(3,'101',1,2);
+/*!40000 ALTER TABLE `klassenraum` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `schueler`
 --
 
@@ -30,7 +56,7 @@ CREATE TABLE `schueler` (
   PRIMARY KEY (`id`),
   KEY `schulklasse_id` (`schulklasse_id`),
   CONSTRAINT `schueler_ibfk_1` FOREIGN KEY (`schulklasse_id`) REFERENCES `schulklasse` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -39,6 +65,7 @@ CREATE TABLE `schueler` (
 
 LOCK TABLES `schueler` WRITE;
 /*!40000 ALTER TABLE `schueler` DISABLE KEYS */;
+INSERT INTO `schueler` VALUES (1,'eric','dietze',2),(2,'paul','kirchhoff',1),(3,'florian','schweiger',3),(4,'hans','wurst',1),(6,'maxine','mustermann',2),(7,'max','mustermann',2);
 /*!40000 ALTER TABLE `schueler` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -53,7 +80,7 @@ CREATE TABLE `schulklasse` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -62,7 +89,32 @@ CREATE TABLE `schulklasse` (
 
 LOCK TABLES `schulklasse` WRITE;
 /*!40000 ALTER TABLE `schulklasse` DISABLE KEYS */;
+INSERT INTO `schulklasse` VALUES (1,'a'),(2,'b'),(3,'c');
 /*!40000 ALTER TABLE `schulklasse` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `tafelanzahl`
+--
+
+DROP TABLE IF EXISTS `tafelanzahl`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `tafelanzahl` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `tafelanzahl`
+--
+
+LOCK TABLES `tafelanzahl` WRITE;
+/*!40000 ALTER TABLE `tafelanzahl` DISABLE KEYS */;
+INSERT INTO `tafelanzahl` VALUES (1,'1tafel'),(2,'2tafeln'),(3,'3tafeln');
+/*!40000 ALTER TABLE `tafelanzahl` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -74,4 +126,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-11-03 13:34:25
+-- Dump completed on 2016-11-27 23:20:33

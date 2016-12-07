@@ -13,6 +13,7 @@
                             <th>Klassenname</th>
                             <th>Tafelanzahl</th>
                             <th><input type="submit" value="löschen" name="loeschen" /></th>
+                            <th></th>
                         </tr>
                     </thead>
                     <?php 

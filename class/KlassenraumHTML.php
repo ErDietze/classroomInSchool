@@ -9,8 +9,8 @@ class KlassenraumHTML {
             $html .= "
             <tr>
                 <td>{$sk->getNummer()}</td>
-                    <td>{$sk->getName()}</td>
-                        <td>{$sk->getTafel_id()}</td>
+                    <td>{$sk->getSchulklasseName()}</td>
+                        <td>{$sk->getTafelName()}</td>
                     <td><input type='checkbox' name='ids[]' value='$pk' /></td> 
                     <td><a href='index.php?id=$pk&area=klassenraum&action=showUpdate'>bearbeiten</a></td>
             </tr>";
