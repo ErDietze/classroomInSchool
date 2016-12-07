@@ -67,7 +67,7 @@ class KlassenraumController {
                 $tafel_id = isset($tafelIdFiltered) ? $tafelIdFiltered : '';
 
                 // eigentliche action
-                Klassenraum::update(new Klassenraum($nummer, $schulklassen_id, $tafel_id, $id));
+                Klassenraum::update(new Klassenraum($nummer, $schulklassen_id, $tafel_id,$id));
 
                 // Aufbereiten der Anzeigevariablen
                 $this->objects['klassenraum'] = Klassenraum::getAll();

@@ -25,12 +25,11 @@
                                 <select name="schulklassen_id" required>
                                     <?php echo KlassenraumHTML::buildDropdown($objects['schulklassen']
                                             , $objects['klassenraum']->getSchulklassen_id());
-                                    echo '<pre>';
-                                    print_r($objects);
-                                    echo '</pre>';
-                                    ?>
+                                                                       ?>
                                 </select>
                             </td>
+                            <input type='hidden' name='id' value='<?php echo $objects['klassenraum']->getId(); ?>'/>
+                            
                         </tr>
 
                         <tr>
@@ -39,11 +38,7 @@
                                
                                 <select name="tafel_id" required>
 <?php echo TafelanzahlHTML::buildDropdown2($objects['tafelanzahl'], $objects['klassenraum']->getTafel_id()); ?>
-                                     <?php
-                                echo '<pre>';
-                                print_r($objects);
-                                echo '</pre>';
-                                ?>
+                                                                     
                                 </select>
                             </td>
                         </tr>
@@ -55,6 +50,7 @@
                             <input type='submit' value='Speichern' />
                             <input type='reset' value='reset' />
                         </td>
+                        <input type='hidden' name='id' value='<?php echo $objects['klassenraum']->getId(); ?>'/>
                     </tr>
                     </tbody>
                 </table>

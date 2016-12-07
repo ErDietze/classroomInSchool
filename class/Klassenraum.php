@@ -24,10 +24,6 @@ class Klassenraum {
         return $this->tafel_id;
     }
 
-    function getTafeln() {
-        return $this->tafeln;
-    }
-
     function __construct($nummer, $schulklassen_id, $tafel_id, $id = NULL) {
 
         if (!is_null($id)) {
@@ -126,6 +122,7 @@ class Klassenraum {
             $stmt->bindValue(2, $k->getSchulklassen_id(), PDO::PARAM_INT);
             $stmt->bindValue(3, $k->getTafel_id(), PDO::PARAM_INT);
             $stmt->bindValue(4, $k->getId(), PDO::PARAM_INT);
+            
             $stmt->execute();
         } catch (Exception $e) {
             throw new Exception('Konnte Rauminfo nicht in db ändern<br>' . $e->getMessage());
